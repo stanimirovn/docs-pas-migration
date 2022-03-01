@@ -1,0 +1,948 @@
+---
+title: <%= vars.app_runtime_abbr %> <%= vars.v_major_version %> Release Notes
+owner: Release Engineering
+---
+
+<% current_page.data.title = vars.app_runtime_full + " " + vars.v_major_version + " Release Notes" %>
+
+This topic contains release notes for <%= vars.app_runtime_first %> <%= vars.v_major_version %>.
+
+<%= vars.app_runtime_abbr %> is certified by the Cloud Foundry Foundation for <%= Date.today.year %>.
+
+For more information about the Cloud Foundry Certified Provider Program, see
+[How Do I Become a Certified Provider?](https://www.cloudfoundry.org/certified-platforms-how-to/)
+on the Cloud Foundry website.
+
+Because VMware uses the Percona Distribution for MySQL, expect a time lag between Oracle
+releasing a MySQL patch and VMware releasing <%= vars.app_runtime_abbr %> containing that patch.
+
+<hr>
+
+## <a id='releases'></a> Releases
+
+<%# DO NOT DELETE THIS LINE - robots use this to add new release notes %>
+
+### <a id='2.12.8'></a> 2.12.8
+
+**Release Date:** 02/28/2022
+
+* **[Feature Improvement]** Due to routing-release now being built with Golang 1.17, all certificates provided MUST contain SAN entries on them. The previous workaround of setting "Enable temporary workaround for certs without SANs" will no longer function.
+* **[Feature Improvement]** Per Golang 1.17's new and stricter IP parsing standards, any IP addrs with leading zeros in any octets will result in a BOSH template failure to allow operators to remove the leading zeros and try again (affects properties fed into diego-release, garden-runc-release, winc-release, nats-release, and routing-release),.
+* **[Feature Improvement]** UAA is compatible with MySQL 8
+* **[Bug Fix]** Fix default metric registrar blocked tags to include 'ip' and remove 'id'
+* **[Bug Fix]** Fix metric-registrar blocked tags configuration
+* **[Bug Fix]** Fixes an issue related to the parsing of the X-B3-TraceId and X-B3-SpanId HTTP headers
+* **[Bug Fix]** Restore missing networking and garden metrics
+* **[Bug Fix]** Smoke tests support for TLSv1.3 only option
+* Bump backup-and-restore-sdk to version `1.18.34`
+* Bump cf-autoscaling to version `248`
+* Bump cflinuxfs3 to version `0.274.0`
+* Bump credhub to version `2.9.9`
+* Bump diego to version `2.58.1`
+* Bump garden-runc to version `1.20.0`
+* Bump loggregator-agent to version `6.3.8`
+* Bump metric-registrar to version `1.2.4`
+* Bump metrics-discovery to version `3.0.8`
+* Bump nats to version `42`
+* Bump routing to version `0.229.0`
+* Bump smoke-tests to version `4.5.0`
+* Bump uaa to version `74.5.34`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>621.211</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.34</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.42</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.21</td></tr>
+    <tr><td>bpm</td><td>1.1.16</td></tr>
+    <tr><td>capi</td><td>1.117.2</td></tr>
+    <tr><td>cf-autoscaling</td><td>248</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.43.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.274.0</td></tr>
+    <tr><td>credhub</td><td>2.9.9</td></tr>
+    <tr><td>diego</td><td>2.58.1</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.38</td></tr>
+    <tr><td>garden-runc</td><td>1.20.0</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.38</td></tr>
+    <tr><td>haproxy</td><td>11.6.0</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.48</td></tr>
+    <tr><td>log-cache</td><td>2.11.5</td></tr>
+    <tr><td>loggregator</td><td>106.6.2</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.8</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.4</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.8</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>42</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.34</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.66</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.55</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.3</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.41.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.49</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.25</td></tr>
+    <tr><td>routing</td><td>0.229.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.50</td></tr>
+    <tr><td>silk</td><td>2.43.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.5.0</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.28</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.18</td></tr>
+    <tr><td>syslog</td><td>11.7.7</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.4</td></tr>
+    <tr><td>uaa</td><td>74.5.34</td></tr>
+  </tbody>
+</table>
+
+
+
+### <a id='2.12.7'></a> 2.12.7
+
+**Release Date:** 02/07/2022
+
+<%= partial "/pcf/tas/known-issues/gorouter-spanid-note" %>
+
+* **[Security Fix]** Diego - Bump containerd to v1.5.9 to address ([CVE-2021-43816](https://nvd.nist.gov/vuln/detail/CVE-2021-43816))
+* **[Security Fix]** Bump routing release to v0.228.0 to address ([CVE-2021-44716](https://nvd.nist.gov/vuln/detail/CVE-2021-44716))
+* **[Feature]** Monit thresholds for the Cloud Controller worker are configurable
+* **[Feature]** Operators can sort apps by status in Apps Manager
+* **[Feature]** Apps can be step-scaled up or down in Autoscaler. See [About App Autoscaler](https://docs.pivotal.io/application-service/2-12/appsman-services/autoscaler/about-app-autoscaler.html).
+* **[Feature Improvement]** Apps Manager supports HTTP/2
+* **[Feature Improvement]** Operators can assign the Space Supporter role in Apps Manager
+* **[Feature Improvement]** Golang v1.17 contains stricter IP parsing standards, so IP addresses with leading zeros in any octets cause a BOSH template failure. Operators can remove the leading zeros and try deploying again. This affects properties that feed into cf-networking-release, silk-release, loggregator-agent-release, and syslog-release. Syslog drains and metric registrar endpoints registered using user-provided services might also be affected.
+* **[Bug Fix]** Adds the ability to parse the cost object in service plan
+* **[Bug Fix]** Fix race conditions that could cause Autoscaler to crash
+* Bump backup-and-restore-sdk to version `1.18.32`
+* Bump binary-offline-buildpack to version `1.0.42`
+* Bump bosh-system-metrics-forwarder to version `0.0.21`
+* Bump bpm to version `1.1.16`
+* Bump cf-autoscaling to version `247`
+* Bump cf-networking to version `2.43.0`
+* Bump cflinuxfs3 to version `0.272.0`
+* Bump diego to version `2.57.0`
+* Bump dotnet-core-offline-buildpack to version `2.3.38`
+* Bump go-offline-buildpack to version `1.9.38`
+* Bump java-offline-buildpack to version `4.48`
+* Bump log-cache to version `2.11.5`
+* Bump loggregator to version `106.6.2`
+* Bump loggregator-agent to version `6.3.7`
+* Bump metric-registrar to version `1.2.3`
+* Bump metrics-discovery to version `3.0.7`
+* Bump nats to version `41`
+* Bump nginx-offline-buildpack to version `1.1.34`
+* Bump nodejs-offline-buildpack to version `1.7.66`
+* Bump php-offline-buildpack to version `4.4.55`
+* Bump push-apps-manager-release to version `675.0.3`
+* Bump pxc to version `0.41.0`
+* Bump python-offline-buildpack to version `1.7.49`
+* Bump r-offline-buildpack to version `1.1.25`
+* Bump routing to version `0.228.0`
+* Bump ruby-offline-buildpack to version `1.8.50`
+* Bump silk to version `2.43.0`
+* Bump smoke-tests to version `4.4.0`
+* Bump staticfile-offline-buildpack to version `1.5.28`
+* Bump statsd-injector to version `1.11.18`
+* Bump syslog to version `11.7.7`
+* Bump system-metrics-scraper to version `3.2.4`
+* Bump uaa to version `74.5.31`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>621.198</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.32</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.42</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.21</td></tr>
+    <tr><td>bpm</td><td>1.1.16</td></tr>
+    <tr><td>capi</td><td>1.117.2</td></tr>
+    <tr><td>cf-autoscaling</td><td>247</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.43.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.272.0</td></tr>
+    <tr><td>credhub</td><td>2.9.8</td></tr>
+    <tr><td>diego</td><td>2.57.0</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.38</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.38</td></tr>
+    <tr><td>haproxy</td><td>11.6.0</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.48</td></tr>
+    <tr><td>log-cache</td><td>2.11.5</td></tr>
+    <tr><td>loggregator</td><td>106.6.2</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.7</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.3</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.7</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>41</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.34</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.66</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.55</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.3</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.41.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.49</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.25</td></tr>
+    <tr><td>routing</td><td>0.228.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.50</td></tr>
+    <tr><td>silk</td><td>2.43.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.4.0</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.28</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.18</td></tr>
+    <tr><td>syslog</td><td>11.7.7</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.4</td></tr>
+    <tr><td>uaa</td><td>74.5.31</td></tr>
+  </tbody>
+</table>
+
+
+### <a id='2.12.6'></a> 2.12.6
+
+**Release Date:** 12/21/2021
+
+<div class="note warning"><strong>Warning:</strong>
+  <p>See the following warnings:</p>
+    <ul>
+    <li>VMware recommends upgrading <%= vars.app_runtime_abbr %> as soon as possible to address <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a>. If you are unable to upgrade, you can mitigate this CVE manually. See <a href="https://community.pivotal.io/s/article/Workaround-instructions-to-address-CVE-2021-44228-in-Tanzu-Application-Service-2-7-through-2-12?language=en_US">Workaround instructions to address CVE-2021-44228 and CVE-2021-45046 in Tanzu Application Service v2.7 - v2.12</a>.</li>
+    <li>This vulnerability also affects <%= vars.ops_manager %>. VMware recommends upgrading to <%= vars.ops_manager %> v2.10.24 as soon as possible. For more information, see the <a href="https://docs.pivotal.io/ops-manager/2-10/release-notes.html#2-10-24"><%= vars.ops_manager %> v2.10.24 release notes</a>.</li>
+  </ul>
+</div>
+
+<%= partial "/pcf/tas/known-issues/gorouter-spanid-note" %>
+
+* **[Security Fix]** Fix uncontrolled recursion related to Log4j ([CVE-2021-45105](https://nvd.nist.gov/vuln/detail/CVE-2021-45105))
+* **[Bug Fix]** Cloud Controller Worker: PruneExcessAppRevisions job is more memory efficient
+* **[Breaking Change]** Gorouter: zipkin `trace-id` size complies with w3 standard of 16 bytes opposed to the previous 8 bytes.
+* Bump credhub to version `2.9.8` which has Log4j `2.17.0`
+* Bump java-offline-buildpack to version `4.47`
+* Bump routing to version `0.227.0`
+* Bump uaa to version `74.5.30` which has Log4j `2.17.0`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>~621</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.28</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.40</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.20</td></tr>
+    <tr><td>bpm</td><td>1.1.15</td></tr>
+    <tr><td>capi</td><td>1.117.2</td></tr>
+    <tr><td>cf-autoscaling</td><td>242</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.42.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.268.0</td></tr>
+    <tr><td>credhub</td><td>2.9.8</td></tr>
+    <tr><td>diego</td><td>2.54.0</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.36</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.37</td></tr>
+    <tr><td>haproxy</td><td>11.6.0</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.47</td></tr>
+    <tr><td>log-cache</td><td>2.11.4</td></tr>
+    <tr><td>loggregator</td><td>106.6.1</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.5</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.2</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.6</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>40</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.32</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.63</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.53</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.1</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.39.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.47</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.23</td></tr>
+    <tr><td>routing</td><td>0.227.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.48</td></tr>
+    <tr><td>silk</td><td>2.41.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.3.1</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.26</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.16</td></tr>
+    <tr><td>syslog</td><td>11.7.6</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.3</td></tr>
+    <tr><td>uaa</td><td>74.5.30</td></tr>
+  </tbody>
+</table>
+
+
+### <a id='2.12.5'></a> 2.12.5
+
+**Release Date:** 12/16/2021
+
+<div class="note warning"><strong>Warning:</strong>
+  <p>See the following warnings:</p>
+    <ul>
+    <li>VMware recommends upgrading <%= vars.app_runtime_abbr %> as soon as possible to address <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a>. If you are unable to upgrade, you can mitigate this CVE manually. See <a href="https://community.pivotal.io/s/article/Workaround-instructions-to-address-CVE-2021-44228-in-Tanzu-Application-Service-2-7-through-2-12?language=en_US">Workaround instructions to address CVE-2021-44228 and CVE-2021-45046 in Tanzu Application Service v2.7 - v2.12</a>.</li>
+    <li>This vulnerability also affects <%= vars.ops_manager %>. VMware recommends upgrading to <%= vars.ops_manager %> v2.10.24 as soon as possible. For more information, see the <a href="https://docs.pivotal.io/ops-manager/2-10/release-notes.html#2-10-24"><%= vars.ops_manager %> v2.10.24 release notes</a>.</li>
+  </ul>
+</div>
+
+<%= partial "/pcf/tas/known-issues/gorouter-spanid-note" %>
+
+* **[Security Fix]** Fix remote code execution vulnerability related to Log4j ([CVE-2021-45046](https://nvd.nist.gov/vuln/detail/CVE-2021-45046))
+* Bump credhub to version `2.9.7` which has Log4j `2.16.0`
+* Bump java-offline-buildpack to version `4.45`
+* Bump php-offline-buildpack to version `4.4.53`
+* Bump uaa to version `74.5.29` which has Log4j `2.16.0`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>~621</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.28</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.40</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.20</td></tr>
+    <tr><td>bpm</td><td>1.1.15</td></tr>
+    <tr><td>capi</td><td>1.117.2</td></tr>
+    <tr><td>cf-autoscaling</td><td>242</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.42.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.268.0</td></tr>
+    <tr><td>credhub</td><td>2.9.7</td></tr>
+    <tr><td>diego</td><td>2.54.0</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.36</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.37</td></tr>
+    <tr><td>haproxy</td><td>11.6.0</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.45</td></tr>
+    <tr><td>log-cache</td><td>2.11.4</td></tr>
+    <tr><td>loggregator</td><td>106.6.1</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.5</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.2</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.6</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>40</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.32</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.63</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.53</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.1</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.39.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.47</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.23</td></tr>
+    <tr><td>routing</td><td>0.227.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.48</td></tr>
+    <tr><td>silk</td><td>2.41.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.3.1</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.26</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.16</td></tr>
+    <tr><td>syslog</td><td>11.7.6</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.3</td></tr>
+    <tr><td>uaa</td><td>74.5.29</td></tr>
+  </tbody>
+</table>
+
+### <a id='2.12.4'></a> 2.12.4
+
+**Release Date:** 12/15/2021
+
+<%= partial "/pcf/tas/known-issues/gorouter-spanid-note" %>
+
+<div class="note warning"><strong>Warning:</strong>
+  <p>See the following warnings:</p>
+    <ul>
+    <li>VMware recommends upgrading <%= vars.app_runtime_abbr %> as soon as possible to address <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a>. If you are unable to upgrade, you can mitigate this CVE manually. See <a href="https://community.pivotal.io/s/article/Workaround-instructions-to-address-CVE-2021-44228-in-Tanzu-Application-Service-2-7-through-2-12?language=en_US">Workaround instructions to address CVE-2021-44228 and CVE-2021-45046 in Tanzu Application Service v2.7 - v2.12</a>.</li>
+    <li>This vulnerability also affects <%= vars.ops_manager %>. VMware recommends upgrading to <%= vars.ops_manager %> v2.10.24 as soon as possible. For more information, see the <a href="https://docs.pivotal.io/ops-manager/2-10/release-notes.html#2-10-24"><%= vars.ops_manager %> v2.10.24 release notes</a>.</li>
+  </ul>
+</div>
+
+* **[Security Fix]** Java and PHP Buildpacks - Fix remote code execution vulnerability related to Log4j ([CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228))
+* **[Bug Fix]** Fix "pre-start scripts failed. Failed Jobs: policy-server" error Upgrading to CF Networking Release v2.40.0
+* **[Bug Fix]** Enables audit logging file rotation to reduce I/O load during log rotation
+* **[Bug Fix]** Smoke Tests uses specified domain for Isolation Segments
+* **[Feature Improvement]** Cloud Controller - Allow operators to configure the Cloud Controller monit healthcheck timeout
+* Bump capi to version `1.117.2`
+* Bump cf-cli to version `1.33.0`
+* Bump cf-networking to version `2.42.0`
+* Bump garden-runc to version `1.19.30`
+* Bump haproxy to version `11.6.0`
+* Bump java-offline-buildpack to version `4.44`
+* Bump php-offline-buildpack to version `4.4.52`
+* Bump smoke-tests to version `4.3.1`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>~621</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.28</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.40</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.20</td></tr>
+    <tr><td>bpm</td><td>1.1.15</td></tr>
+    <tr><td>capi</td><td>1.117.2</td></tr>
+    <tr><td>cf-autoscaling</td><td>242</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.42.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.268.0</td></tr>
+    <tr><td>credhub</td><td>2.9.6</td></tr>
+    <tr><td>diego</td><td>2.54.0</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.36</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.37</td></tr>
+    <tr><td>haproxy</td><td>11.6.0</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.44</td></tr>
+    <tr><td>log-cache</td><td>2.11.4</td></tr>
+    <tr><td>loggregator</td><td>106.6.1</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.5</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.2</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.6</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>40</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.32</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.63</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.52</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.1</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.39.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.47</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.23</td></tr>
+    <tr><td>routing</td><td>0.227.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.48</td></tr>
+    <tr><td>silk</td><td>2.41.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.3.1</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.26</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.16</td></tr>
+    <tr><td>syslog</td><td>11.7.6</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.3</td></tr>
+    <tr><td>uaa</td><td>74.5.28</td></tr>
+  </tbody>
+</table>
+
+
+### <a id='2.12.3'></a> 2.12.3
+
+**Release Date:** 12/13/2021
+
+<div class="note warning"><strong>Warning:</strong>
+  <p>See the following warnings:</p>
+    <ul>
+      <li>VMware recommends upgrading <%= vars.app_runtime_abbr %> as soon as possible to address
+    <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a>. If you are unable to upgrade, you can mitigate this CVE manually. See <a href="https://community.pivotal.io/s/article/Workaround-instructions-to-address-CVE-2021-44228-in-Tanzu-Application-Service-2-7-through-2-12?language=en_US">Instructions to address CVE-2021-44228 in Tanzu Application Service (2.7 through 2.12)</a>.</li>
+      <li>This release does not contain the Java buildpack bump for this vulnerability. You must manually bump the Java buildpack and lock the version. Download the updated buildpack from <a href="https://network.pivotal.io/products/java-buildpack/#/releases/1013593">VMware Tanzu Network</a>.</li>
+      <li>This vulnerability also affects Ops Manager. VMware recommends upgrading to Ops Manager v2.10.24 as soon as possible. For more information, see the <a href="https://docs.pivotal.io/ops-manager/2-10/release-notes.html#2-10-24">Ops Manager v2.10.24 release notes</a>.</li>
+    </ul>
+  </div>
+
+* **[Security Fix]** UAA and CredHub - Fix remote code execution vulnerability related to Log4j ([CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228))
+* **[Bug Fix]** Diego - Envoy v1.19 uses the original TCP connection pool so that it can accept more than 1024 downstream connections
+* Bump credhub to version `2.9.6` which has Log4j `2.15.0`
+* Bump diego to version `2.54.0`
+* Bump uaa to version `74.5.28` which has Log4j `2.15.0`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>621.176</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.26</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.40</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.20</td></tr>
+    <tr><td>bpm</td><td>1.1.15</td></tr>
+    <tr><td>capi</td><td>1.117.1</td></tr>
+    <tr><td>cf-autoscaling</td><td>241</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.40.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.264.0</td></tr>
+    <tr><td>credhub</td><td>2.9.6</td></tr>
+    <tr><td>diego</td><td>2.54.0</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.36</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.37</td></tr>
+    <tr><td>haproxy</td><td>11.6.0</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.42</td></tr>
+    <tr><td>log-cache</td><td>2.11.4</td></tr>
+    <tr><td>loggregator</td><td>106.6.1</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.4</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.2</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.6</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>40</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.32</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.63</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.48</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.1</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.39.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.47</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.23</td></tr>
+    <tr><td>routing</td><td>0.226.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.48</td></tr>
+    <tr><td>silk</td><td>2.40.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.3.0</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.26</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.16</td></tr>
+    <tr><td>syslog</td><td>11.7.5</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.3</td></tr>
+    <tr><td>uaa</td><td>74.5.28</td></tr>
+  </tbody>
+</table>
+
+
+
+### <a id='2.12.2'></a> 2.12.2
+
+**Release Date:** 11/23/2021
+
+* Bump backup-and-restore-sdk to version `1.18.26`
+* Bump bpm to version `1.1.15`
+* Bump cf-autoscaling to version `241`
+* Bump cf-networking to version `2.40.0`
+* Bump cflinuxfs3 to version `0.264.0`
+* Bump diego to version `2.53.1`
+* Bump dotnet-core-offline-buildpack to version `2.3.36`
+* Bump go-offline-buildpack to version `1.9.37`
+* Bump haproxy to version `11.6.0`
+* Bump loggregator to version `106.6.1`
+* Bump nodejs-offline-buildpack to version `1.7.63`
+* Bump php-offline-buildpack to version `4.4.48`
+* Bump python-offline-buildpack to version `1.7.47`
+* Bump r-offline-buildpack to version `1.1.23`
+* Bump routing to version `0.226.0`
+* Bump ruby-offline-buildpack to version `1.8.48`
+* Bump silk to version `2.40.0`
+* Bump staticfile-offline-buildpack to version `1.5.26`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>~621</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.26</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.40</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.20</td></tr>
+    <tr><td>bpm</td><td>1.1.15</td></tr>
+    <tr><td>capi</td><td>1.117.1</td></tr>
+    <tr><td>cf-autoscaling</td><td>241</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.40.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.264.0</td></tr>
+    <tr><td>credhub</td><td>2.9.4</td></tr>
+    <tr><td>diego</td><td>2.53.1</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.36</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.37</td></tr>
+    <tr><td>haproxy</td><td>11.6.0</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.42</td></tr>
+    <tr><td>log-cache</td><td>2.11.4</td></tr>
+    <tr><td>loggregator</td><td>106.6.1</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.4</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.2</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.6</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>40</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.32</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.63</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.48</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.1</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.39.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.47</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.23</td></tr>
+    <tr><td>routing</td><td>0.226.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.48</td></tr>
+    <tr><td>silk</td><td>2.40.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.3.0</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.26</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.16</td></tr>
+    <tr><td>syslog</td><td>11.7.5</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.3</td></tr>
+    <tr><td>uaa</td><td>74.5.26</td></tr>
+  </tbody>
+</table>
+
+
+
+### <a id='2.12.1'></a> 2.12.1
+
+**Release Date:** 10/20/2021
+
+* **[Security Fix]** CAPI - Cap label selectors at 50 in queries and improve label selector performance to mitigate DOS vulnerability [CVE-2021-22101](https://www.cloudfoundry.org/blog/cve-2021-22101-cloud-controller-is-vulnerable-to-unauthenticated-denial-of-service/)
+* **[Feature Improvement]** HTTP/2 toggle disables Diego container proxy ALPN
+* **[Feature Improvement]** Set default for system metrics scrape interval to 15 seconds
+* **[Bug Fix]** CAPI - Some metrics for CAPI were not being properly emitted
+* **[Bug Fix]** Fix certificate rotation by fixing CredHub's import of concatenated certificates
+* **[Bug Fix]** Fix "System metrics scrape interval" configuration in manifest
+* Bump backup-and-restore-sdk to version `1.18.22`
+* Bump bpm to version `1.1.14`
+* Bump capi to version `1.117.1`
+* Bump cflinuxfs3 to version `0.262.0`
+* Bump credhub to version `2.9.4`
+* Bump log-cache to version `2.11.4`
+* Bump nginx-offline-buildpack to version `1.1.32`
+* Bump nodejs-offline-buildpack to version `1.7.61`
+* Bump push-usage-service-release to version `674.0.23`
+* Bump pxc to version `0.39.0`
+* Bump python-offline-buildpack to version `1.7.46`
+* Bump r-offline-buildpack to version `1.1.22`
+* Bump ruby-offline-buildpack to version `1.8.47`
+* Bump uaa to version `74.5.26`
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>621.0</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.22</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.40</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.20</td></tr>
+    <tr><td>bpm</td><td>1.1.14</td></tr>
+    <tr><td>capi</td><td>1.117.1</td></tr>
+    <tr><td>cf-autoscaling</td><td>239</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.38.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.262.0</td></tr>
+    <tr><td>credhub</td><td>2.9.4</td></tr>
+    <tr><td>diego</td><td>2.53.0</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.34</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.34</td></tr>
+    <tr><td>haproxy</td><td>11.4.4</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.42</td></tr>
+    <tr><td>log-cache</td><td>2.11.4</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.4</td></tr>
+    <tr><td>loggregator</td><td>106.6.0</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.2</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.6</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>40</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.32</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.61</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.45</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.1</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.23</td></tr>
+    <tr><td>pxc</td><td>0.39.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.46</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.22</td></tr>
+    <tr><td>routing</td><td>0.224.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.47</td></tr>
+    <tr><td>silk</td><td>2.38.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.3.0</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.24</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.16</td></tr>
+    <tr><td>syslog</td><td>11.7.5</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.3</td></tr>
+    <tr><td>uaa</td><td>74.5.26</td></tr>
+  </tbody>
+</table>
+
+
+
+### <a id='2.12.0'></a> 2.12.0
+
+**Release Date:** October 4, 2021
+
+* See [New Features in <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>](#new-features)
+* See [Breaking Changes](#breaking-changes)
+
+<table border="1" class="nice">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ubuntu-xenial stemcell</td><td>621.0</td></tr>
+    <tr><td>backup-and-restore-sdk</td><td>1.18.18</td></tr>
+    <tr><td>binary-offline-buildpack</td><td>1.0.40</td></tr>
+    <tr><td>bosh-dns-aliases</td><td>0.0.4</td></tr>
+    <tr><td>bosh-system-metrics-forwarder</td><td>0.0.20</td></tr>
+    <tr><td>bpm</td><td>1.1.13</td></tr>
+    <tr><td>capi</td><td>1.117.0</td></tr>
+    <tr><td>cf-autoscaling</td><td>239</td></tr>
+    <tr><td>cf-cli</td><td>1.33.0</td></tr>
+    <tr><td>cf-networking</td><td>2.38.0</td></tr>
+    <tr><td>cflinuxfs3</td><td>0.259.0</td></tr>
+    <tr><td>credhub</td><td>2.9.1</td></tr>
+    <tr><td>diego</td><td>2.53.0</td></tr>
+    <tr><td>dotnet-core-offline-buildpack</td><td>2.3.34</td></tr>
+    <tr><td>garden-runc</td><td>1.19.30</td></tr>
+    <tr><td>go-offline-buildpack</td><td>1.9.34</td></tr>
+    <tr><td>haproxy</td><td>11.4.4</td></tr>
+    <tr><td>java-offline-buildpack</td><td>4.42</td></tr>
+    <tr><td>log-cache</td><td>2.11.2</td></tr>
+    <tr><td>loggregator-agent</td><td>6.3.4</td></tr>
+    <tr><td>loggregator</td><td>106.6.0</td></tr>
+    <tr><td>mapfs</td><td>1.2.6</td></tr>
+    <tr><td>metric-registrar</td><td>1.2.2</td></tr>
+    <tr><td>metrics-discovery</td><td>3.0.6</td></tr>
+    <tr><td>mysql-monitoring</td><td>9.15.0</td></tr>
+    <tr><td>nats</td><td>40</td></tr>
+    <tr><td>nfs-volume</td><td>7.1.1</td></tr>
+    <tr><td>nginx-offline-buildpack</td><td>1.1.31</td></tr>
+    <tr><td>nodejs-offline-buildpack</td><td>1.7.57</td></tr>
+    <tr><td>notifications-ui</td><td>40</td></tr>
+    <tr><td>notifications</td><td>62</td></tr>
+    <tr><td>php-offline-buildpack</td><td>4.4.45</td></tr>
+    <tr><td>push-apps-manager-release</td><td>675.0.1</td></tr>
+    <tr><td>push-usage-service-release</td><td>674.0.20</td></tr>
+    <tr><td>pxc</td><td>0.37.0</td></tr>
+    <tr><td>python-offline-buildpack</td><td>1.7.45</td></tr>
+    <tr><td>r-offline-buildpack</td><td>1.1.21</td></tr>
+    <tr><td>routing</td><td>0.224.0</td></tr>
+    <tr><td>ruby-offline-buildpack</td><td>1.8.46</td></tr>
+    <tr><td>silk</td><td>2.38.0</td></tr>
+    <tr><td>smb-volume</td><td>3.1.0</td></tr>
+    <tr><td>smoke-tests</td><td>4.3.0</td></tr>
+    <tr><td>staticfile-offline-buildpack</td><td>1.5.24</td></tr>
+    <tr><td>statsd-injector</td><td>1.11.16</td></tr>
+    <tr><td>syslog</td><td>11.7.5</td></tr>
+    <tr><td>system-metrics-scraper</td><td>3.2.3</td></tr>
+    <tr><td>uaa</td><td>74.5.25</td></tr>
+  </tbody>
+</table>
+
+
+## <a id='upgrade'></a> How to Upgrade
+
+To upgrade to <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>, see [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/2-12/operating/configuring.html).
+
+When upgrading to <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>, be aware of the following upgrade considerations:
+
+
+* If you previously used an earlier version of <%= vars.app_runtime_abbr %>, you must first upgrade to <%= vars.app_runtime_abbr %> v2.11 to successfully upgrade to <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>.
+
+* To minimize downtime for developers pushing apps, upgrade from <%= vars.app_runtime_abbr %> v2.11.9 or later. Upgrading from earlier patch versions can result in an `Unknown Error` when pushing apps.
+
+* Some partner service tiles may be incompatible with <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>.
+  VMware is working with partners to ensure their tiles are updated to work with the latest versions of <%= vars.app_runtime_abbr %>.
+  <br/><br/> For information about which partner service releases are currently compatible with <%= vars.app_runtime_abbr %>
+  <%= vars.v_major_version %>, review the appropriate partners services release documentation
+  at [https://docs.pivotal.io](https://docs.pivotal.io) or contact the partner organization that produces the tile.
+
+
+## <a id='new-features'></a> New Features in <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>
+
+<%= vars.app_runtime_abbr %> <%= vars.v_major_version %> includes the following major features:
+
+### <a id='cf-cli'></a><%= vars.app_runtime_abbr %> Is Compatible with cf CLI v8
+
+<%= vars.app_runtime_abbr %> <%= vars.v_major_version %> paired with cf CLI v8 allows you to do the following:
+
+- Push apps with end-to-end HTTP/2 routing
+- Assign the Space Supporter role to users
+- Manage services asynchronously
+
+For more information, see [Upgrading to cf CLI v8](../cf-cli/v8.html).
+
+### <a id='http2'></a>Gorouter Supports HTTP/2
+
+<p class="note breaking"><strong>Breaking Change</strong>: See <a href="#envoy-http2-alpn">Envoy Advertises HTTP/2 Support Over ALPN</a> in the <em>Breaking Changes</em> section.</p>
+
+In <%= vars.app_runtime_abbr %> <%= vars.v_major_version %> and later, HTTP/2 support is enabled by default.
+HTTP/2 is the second major version of the the HTTP protocol.
+
+HTTP/2 features the following improvements over HTTP/1.1:
+
+* Uses a binary data format instead of plain text
+* Compresses headers
+* Multiplexes multiple HTTP requests over a single TCP connection
+
+Together, these improvements can improve response times for some apps.
+
+For more information about the HTTP/2 protocol, see [RFC 7540](https://datatracker.ietf.org/doc/html/rfc7540).
+
+For information about configuring support for HTTP/2 in <%= vars.app_runtime_abbr %>, see [Configuring HTTP/2 Support](http://docs.pivotal.io/application-service/2-12/adminguide/supporting-http2.html).
+
+For information about routing HTTP/2 traffic to your <%= vars.app_runtime_abbr %> apps, see [Routing HTTP/2 and gRPC Traffic to Apps](../devguide/http2-protocol.html).
+
+### <a id='tls-v1.3'></a>Gorouter Supports TLS v1.3
+
+In <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>, the Gorouter supports TLS v1.3.
+New installations of <%= vars.app_runtime_abbr %> use TLS v1.3 for the Gorouter by default.
+If you are upgrading to <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>, the Gorouter uses TLS v1.2 by default.
+
+You can select which versions of TLS that the Gorouter uses when you configure <%= vars.app_runtime_abbr %>.
+Selecting support for TLS v1.3 only is a beta feature in <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>.
+
+For more information, see [(Beta) Gorouter Can Support TLS v1.3 Connections Only](#tls-v1.3-only) in the _Breaking Changes_ section.
+
+### <a id='space-supporter'></a>New User Role: Space Supporter
+
+<%= vars.app_runtime_abbr %> <%= vars.v_major_version %> introduces the Space Supporter role.
+Users with the Space Supporter role can do the following:
+
+- View app logs and audit events
+- Start, stop, and restart apps
+- Scale apps
+- Read, bind, and unbind existing service instances
+
+Users with the Space Supporter role cannot do any of the following:
+
+- View credentials or app data
+- Edit app source code
+- SSH into app instances
+- View the app environment
+- Create or access service keys
+- Create or update services
+- Delete apps or services
+
+The Space Supporter role is only available for the Cloud Controller V3 API.
+If a user with this role tries to access a V2 endpoint, the API returns a 403.
+
+For more information, see [User Roles](../concepts/roles.html#roles) in _Orgs, Spaces, Roles, and Permissions_.
+
+### <a id='version-in-apps-manager'></a> <%= vars.app_runtime_abbr %> Version is in Apps Manager UI
+
+You can find the current version of <%= vars.app_runtime_abbr %> in the footer of the Apps Manager UI.
+
+### <a id='secure-metric-registrar'></a> Secure Endpoint for Metric Registrar
+
+<%= vars.app_runtime_abbr %> <%= vars.v_major_version %> allows operators to register a secure endpoint for the Metric Registrar CLI plugin to ingest app metrics.
+You can use the `cf register-metrics-endpoint` command to specify an internal port in your app when you register the endpoint to the metric registrar.
+
+For more information, see [Register a Metrics Endpoint](../metric-registrar/using.html#register-endpoint) in _Using Metric Registrar_.
+
+### <a id='drain-metadata'></a> Reduce Traffic to Syslog Drains
+
+<%= vars.app_runtime_abbr %> <%= vars.v_major_version %> includes an option to control how much deployment metadata is sent in app and aggregate syslog drains.
+
+If you select the **Default loggregator drain metadata** checkbox, then <%= vars.app_runtime_abbr %> sends all metadata from your deployment to syslog drains.
+
+If you do not select this option, then <%= vars.app_runtime_abbr %> sends a reduced amount of metadata.
+This can reduce your external database logs by up to 50 percent.
+
+For more information, see [(Optional) Configure System Logging](https://docs.pivotal.io/application-service/2-12/operating/configure-pas.html#sys-logging) in _Configuring <%= vars.app_runtime_abbr %>_.
+
+### <a id='cli-container-image'></a>Supported cf CLI Container Images
+
+VMware supports the following container images that contain the cf CLI:
+
+- [cloudfoundry/cli:8.0.0](https://hub.docker.com/layers/cloudfoundry/cli/8.0.0/images/sha256-fce4897a00d40df87a60b3e92fa64dd2ac12c5f7ffd023e13d321e0e50a6716d?context=explore)
+- [cloudfoundry/cli:7.3.0](https://hub.docker.com/layers/cloudfoundry/cli/7.3.0/images/sha256-03e3a825dacdde874cc470d41aff18a9a81204d63bf0f785be60670d2ceb8176?context=explore)
+- [cloudfoundry/cli:6.53.0](https://hub.docker.com/layers/cloudfoundry/cli/6.53.0/images/sha256-423a28c41d3d151c0a5eb551d9e0321d1dd5431a983d143a3433dcfd93be7f3a?context=explore)
+
+VMware maintains these container images and updates them with the latest security patches.
+
+## <a id='breaking-changes'></a> Breaking Changes
+
+<%= vars.app_runtime_abbr %> <%= vars.v_major_version %> includes the following breaking changes:
+
+### <a id='tls-v1.3-only'></a>(Beta) Gorouter Can Support TLS v1.3 Connections Only
+
+TLS v1.3 is not compatible with some versions of Java.
+If you configure <%= vars.app_runtime_abbr %> to support TLS v1.3 only, you might encounter errors with Java apps.
+For more information, see [JSSE Client does not accept status_request extension in CertificateRequest messages for TLS 1.3](https://bugs.openjdk.java.net/browse/JDK-8236039) in the JDK Bug System.
+
+The tile property that controls the TLS version in <%= vars.app_runtime_abbr %> changes in <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>. You must update any stored configuration files to reflect the change.
+
+### <a id='envoy-http2-alpn'></a>Envoy Advertises HTTP/2 Support Over ALPN
+
+Envoy, the Diego container proxy, advertises HTTP/2 support using Application-Layer Protocol Negotiation (ALPN) for all apps.
+Internal clients that access the Envoy TLS port directly must negotiate down to HTTP/1.1 for apps that do not support HTTP/2.
+The Envoy TLS port is typically 61001.
+Clients that connect to apps using the Gorouter are not affected.
+
+<%= partial "/pcf/tas/known-issues/gorouter-chunking" %>
+
+
+## <a id='known-issues'></a> Known Issues
+
+<%= vars.app_runtime_abbr %> v2.12 includes the following known issue:
+
+### <a id="haproxy-http2"></a> HAProxy Does Not Support HTTP/2
+
+<%= partial "/pcf/tas/known-issues/haproxy-http2" %>
+
+### <a id="stored-procedure"></a> Pre-Start Scripts Fail on policy-server Job
+
+When upgrading to <%= vars.app_runtime_abbr %> v2.12.2, the policy-server pre-start script runs a database migration that drops
+a stored procedure that is no longer needed. If your `networkpolicyserver` database does not have the
+stored procedure, you might see the following error in `diego_database` policy-server
+stdout logs:
+
+```console
+PROCEDURE networkpolicyserver.drop_destination_index does not exist handling 66
+```
+
+To work around this error, add the migration to your `networkpolicyserver.gorp_migrations` table and skip the migration.
+
+For more information, see ["pre-start scripts failed. Failed Jobs: policy-server" error Upgrading to CF Networking Release 2.40.0 in Tanzu Application Service for VMs](https://community.pivotal.io/s/article/TAS-upgrade-to-version-including-cf-networking-release-2-40-0-may-fail-policy-server-job-pre-start-job?language=en_US) in the Knowledge Base.
+
+### <a id='gorouter-incorrect-span-id'></a>Gorouter Sets an Invalid X-B3-SpanID Header
+
+<%= partial "/pcf/tas/known-issues/gorouter-spanid" %>
